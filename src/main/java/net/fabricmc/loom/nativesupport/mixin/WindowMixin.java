@@ -16,8 +16,8 @@
 
 package net.fabricmc.loom.nativesupport.mixin;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.Window;
+import com.mojang.blaze3d.platform.Window;
+import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -28,7 +28,7 @@ public class WindowMixin {
 	@Inject(at = @At("HEAD"), method = "setIcon", cancellable = true)
 	private void setIcon(CallbackInfo info) {
 		// Unsupported on MacOS, mirrors the same fix in 1.18
-		if (MinecraftClient.IS_SYSTEM_MAC) {
+		if (Minecraft.ON_OSX) {
 			info.cancel();
 		}
 	}

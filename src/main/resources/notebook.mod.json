@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "loom-native-support",
+  "version": "${version}",
+  "license": "Apache-2",
+  "environment": "client",
+  "mixins": [
+    "loom-native-support.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "java": "~17"
+  }
+}

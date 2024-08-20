@@ -17,7 +17,7 @@
 package net.fabricmc.loom.nativesupport.mixin;
 
 import ca.weblite.objc.RuntimeUtils;
-import net.minecraft.client.util.MacWindowUtil;
+import com.mojang.blaze3d.platform.MacosUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Final;
@@ -27,13 +27,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = MacWindowUtil.class)
+@Mixin(value = MacosUtil.class)
 public abstract class MacWindowUtilMixin {
 	private static final Logger LOGGER = LogManager.getLogger("MacWindowUtilMixin");
 
 	@Shadow
 	@Final
-	private static int FULLSCREEN_MASK;
+	private static int NS_FULL_SCREEN_WINDOW_MASK;
 
 	@Inject(method = "toggleFullscreen(J)V", at = @At("HEAD"), cancellable = true)
 	private static void toggleFullscreen(long handle, CallbackInfo ci) {
